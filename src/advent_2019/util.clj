@@ -13,6 +13,11 @@
 (defn swap [f x y] (f y x))
 (defn sum [coll] (reduce + 0 coll))
 
+(defn argmin
+  "Return the value x in xs that minimises (f x)."
+  [f xs]
+  (apply min-key f xs))
+
 ;; filter-if :: ∀ a. List Boolean -> List a -> List a
 (defn filter-if
   "Filter c2 according to the truth of the corresponding element in c1.

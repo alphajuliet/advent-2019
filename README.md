@@ -4,7 +4,7 @@ Solving the challenges in the [Advent of Code 2019](https://adventofcode.com/201
 
 ## slock
 
-Some simple code stats.
+Some simple code stats for comparison.
 
 Day | Source lines
 ----|---------------
