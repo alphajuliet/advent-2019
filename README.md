@@ -10,6 +10,7 @@ Day | Source lines
 ----|---------------
   1 |  35
   2 |  83
+  3 | 127
 
 ## Day 1
 
@@ -20,6 +21,14 @@ A simple warm-up with an easy summed calculation in part 1, following by a recur
 Here we implement a little microcontroller with three instructions. Similar to Day 8 in Advent 2020, I did this as a state machine using a *reduce* function to step through the memory, updating the instruction pointer (ip) on the way.
 
 For part 2, we need to step through the code with different seed values, to find which one gives the result we need.
+
+## Day 3
+
+And here we go with a more serious challenge. My first inclination was to see if there was some neat algorithm for finding the intersections of two random walks in a 2D plane. Sadly, that is either not the case, or I was using the wrong terminology for a similar problem. So, we need to break each path into a sequence of horizontal or vertical line segments. 
+
+First is to convert the directional instructions into a series of waypoints in the plane, and from there into a sequence of line segments with a start and endpoint. I then look for an intersection between every possible pair of line segments, one from each path. Detecting an intersection took me a little while: it's a tricky little calculation in two dimensions, when keeping track of four 2D endpoints. Finally, I found all the intersections and for part 1, we find the intersection point the shortest distance from the origin.
+
+For part 2, we actually need to measure the length of the paths from the origin to the intersection points, and then find the point with the shortest total length across both paths. This requires finding each segment, adding up all the segment lengths before it, and then add the distance from the last endpoint to the intersection. This involves keeping track of a number of things but we get there in the end. Looking at the stats, this one weeded out a hefty 36% of the starters from Day 2.
 
 
 ## License
