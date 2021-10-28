@@ -3,7 +3,6 @@
 ;; The puzzle input
 (def input-range [124075 580769])
 
-
 (defn int->vec
   "Convert an integer into a vector."
   [i]
@@ -11,6 +10,7 @@
         (seq (str i))))
 
 (defn differences
+  "Return the differences between adjacent pairs."
   [coll]
   (map #(- %2 %1) coll (rest coll)))
 
@@ -24,14 +24,31 @@
   [coll]
   (every? nat-int? coll))
 
+(defn test-5?
+  "Cannot have three consecutive digits => cannot have _only_ two consecutive zero differences."
+  [coll]
+  (let [v (vals (frequencies coll))]
+    (nat-int? (.indexOf v 2))))
+
 (defn test-number?
   [n]
   (let [coll (differences (int->vec n))]
     (and (test-3? coll)
          (test-4? coll))))
 
+(defn test-number-2?
+  [n]
+  (let [coll (differences (int->vec n))]
+    (and (test-3? coll)
+         (test-4? coll)
+         (test-5? (int->vec n)))))
+
 (defn part1
   [[start end]]
   (count (filter test-number? (range start (inc end)))))
+
+(defn part2
+  [[start end]]
+  (count (filter test-number-2? (range start (inc end)))))
 
 ;; The End

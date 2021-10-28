@@ -11,6 +11,7 @@ Day | Source lines
   1 |  35
   2 |  83
   3 | 127
+  4 |  54
 
 ## Day 1
 
@@ -29,6 +30,10 @@ And here we go with a more serious challenge. My first inclination was to see if
 First is to convert the directional instructions into a series of waypoints in the plane, and from there into a sequence of line segments with a start and endpoint. I then look for an intersection between every possible pair of line segments, one from each path. Detecting an intersection took me a little while: it's a tricky little calculation in two dimensions, when keeping track of four 2D endpoints. Finally, I found all the intersections and for part 1, we find the intersection point the shortest distance from the origin.
 
 For part 2, we actually need to measure the length of the paths from the origin to the intersection points, and then find the point with the shortest total length across both paths. This requires finding each segment, adding up all the segment lengths before it, and then add the distance from the last endpoint to the intersection. This involves keeping track of a number of things but we get there in the end. Looking at the stats, this one weeded out a hefty 36% of the starters from Day 2.
+
+## Day 4
+
+Part 1 of this one is fine. We just apply a couple of simple tests to all the numbers in the range, via filter and count. Part 2 adds another rule that I didn't understand at first, so had to look around for an explanation. I was going to use regexs but realised that trying to match exactly 2 given digits is quite challenging, so ended up using a frequency analysis.
 
 
 ## License
