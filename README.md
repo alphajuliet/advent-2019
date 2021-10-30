@@ -12,6 +12,7 @@ Day | Source lines
   2 |  83
   3 | 127
   4 |  54
+  5 | 148
 
 ## Day 1
 
@@ -35,6 +36,9 @@ For part 2, we actually need to measure the length of the paths from the origin 
 
 Part 1 of this one is fine. We just apply a couple of simple tests to all the numbers in the range, via filter and count. Part 2 adds another rule that I didn't understand at first, so had to look around for an explanation. I was going to use regexs but realised that trying to match exactly 2 given digits is quite challenging, so ended up using a frequency analysis.
 
+## Day 5
+
+Our little computer gets tougher with the addition of some more instructions: two in part 1, and another four in part 2, plus the implementation of immediate parameters on top of the usual addressing. This required a bit of careful coding (and some cursing when not being careful enough) to add more state, handle modes (except for address destination parameters) to get everything lined up and working. The code isn't as tidy as I would like, so I might need to do some refactoring if we need to add to this machine, as I expect will be the request in later days.
 
 ## License
 
