@@ -13,7 +13,7 @@
 (def test1f "data/day05-test1.txt")
 
 ;;----------------
-(defn read-data
+(defn read-program
   "Read in the data as a vector of numbers"
   ;; read-data :: String -> IO [Int]
   [f]
@@ -56,7 +56,8 @@
   [{:keys [mem ip input] :as state} _]
   (let [dest (nth mem (inc ip))]
     (-> state
-        (assoc-in [:mem dest] input)
+        (assoc-in [:mem dest] (first input))
+        (update :input rest)
         (update :ip #(+ % 2)))))
 
 (defn write-value
@@ -132,16 +133,16 @@
 (defn part1
   [f]
   (-> f
-      read-data
-      (run-code 1)
+      read-program
+      (run-code [1])
       :output
       last))
 
 (defn part2
   [f]
   (-> f
-      read-data
-      (run-code 5)
+      read-program
+      (run-code [5])
       :output
       last))
 
