@@ -7,6 +7,7 @@
 ;;----------------
 (def inputf "data/day06-input.txt")
 (def testf "data/day06-test.txt")
+(def test2f "data/day06-test2.txt")
 
 ;;----------------
 (defn read-data
@@ -19,8 +20,8 @@
 ;;----------------
 (defn create-graph
   "Create a directed graph from the edges."
-  [edges]
-  (let [g (uber/digraph)]
+  [graph-type edges]
+  (let [g (graph-type)]
     (uber/add-edges* g edges)))
 
 (defn root-node
@@ -36,11 +37,25 @@
     (util/sum
      (map #(:cost (alg/shortest-path g root %)) (uber/nodes g)))))
 
+(defn transfers
+  [g]
+  (-> g
+      (alg/shortest-path "YOU" "SAN")
+      :cost
+      (- 2)))
+
 (defn part1
   [f]
-  (-> f
+  (->> f
       read-data
-      create-graph
+      (create-graph uber/digraph)
       count-all-edges))
+
+(defn part2
+  [f]
+  (->> f
+       read-data
+       (create-graph uber/graph)
+       transfers))
 
 ;; The End

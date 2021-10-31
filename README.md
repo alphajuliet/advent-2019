@@ -40,6 +40,12 @@ Part 1 of this one is fine. We just apply a couple of simple tests to all the nu
 
 Our little computer gets tougher with the addition of some more instructions: two in part 1, and another four in part 2, plus the implementation of immediate parameters on top of the usual addressing. This required a bit of careful coding (and some cursing when not being careful enough) to add more state, handle modes (except for address destination parameters) to get everything lined up and working. The code isn't as tidy as I would like, so I might need to do some refactoring if we need to add to this machine, as I expect will be the request in later days.
 
+## Day 6
+
+This is an opportunity for use a graph, and I've gone for Ubergraph, as usual. The orbital relationships can be treated as edges on a graph. For part 1, we create a graph of directed edges x -> y for where y orbits x. We find the root node as the one without any incoming edges, and then add up the shortest paths from the root to every node.
+
+For part 2, we create an undirected graph, and then just look for the shortest path between us and Santa. Ubergraph handles all this easily.
+
 ## License
 
 Copyright © 2021 Andrew Joyner
