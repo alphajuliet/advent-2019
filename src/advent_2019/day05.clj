@@ -56,8 +56,8 @@
   [{:keys [mem ip input] :as state} _]
   (let [dest (nth mem (inc ip))]
     (-> state
-        (assoc-in [:mem dest] (first input))
-        (update :input rest)
+        (assoc-in [:mem dest] (peek input))
+        (update :input pop)
         (update :ip #(+ % 2)))))
 
 (defn write-value
@@ -115,35 +115,35 @@
       6 (jump-if state instr zero?)
       7 (store-if state instr <)
       8 (store-if state instr =)
-      99 state)))
+      state)))
 
 (defn run-code
   "Main execution loop"
-  [memory input]
+  [memory input out]
   (let [init-ip 0
         max-instr 200]
     (reduce (fn [{:keys [mem ip] :as state} _]
               (if (= 99 (nth mem ip))
-                (reduced state)
+                (reduced (assoc state :halt true))
                 ;;else
                 (exec-instr state)))
-            {:mem memory :ip init-ip :output [] :input input}
+            {:mem memory :ip init-ip :halt false :output out :input input}
             (range max-instr))))
 
 (defn part1
   [f]
   (-> f
       read-program
-      (run-code [1])
+      (run-code [1] [])
       :output
-      last))
+      peek))
 
 (defn part2
   [f]
   (-> f
       read-program
-      (run-code [5])
+      (run-code [5] [])
       :output
-      last))
+      peek))
 
 ;; The End
