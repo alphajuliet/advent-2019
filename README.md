@@ -46,6 +46,14 @@ This is an opportunity for use a graph, and I've gone for Ubergraph, as usual. T
 
 For part 2, we create an undirected graph, and then just look for the shortest path between us and Santa. Ubergraph handles all this easily.
 
+## Day 7
+
+Part 1 is relatively straightforward. Part 2, not so much. I haven't solved this one yet. I may come back to it.
+
+## Day 8
+
+This calls for some tensor work, specifically in 3 dimensions, so we call in the core.matrix library. Once we've read in and parsed the digits, we can reshape them into a 3D tensor. For part 1, we need to count digits in each 2D slice along the major axis, find the one with the fewest zeros and calculate the product of the count of 1s and 2s. Part 2 is actually easier here because we just need to merge the layers according to a transparency rule. I get to use a simple map-reduce operation over all the layers to give the result.
+
 ## License
 
 Copyright © 2021 Andrew Joyner
