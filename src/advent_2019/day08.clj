@@ -8,6 +8,8 @@
 (def input-dims [100 6 25])
 (def testf "data/day08-test.txt")
 (def test-dims [2 2 3])
+(def test2f "data/day08-test2.txt")
+(def test2-dims [4 2 2])
 
 ;;----------------
 (defn read-image
@@ -30,10 +32,10 @@
   "Count the a's in the tensor m."
   [t a]
   (as-> t <>
-      (m/eq <> a)
-      (m/eseq <>)
-      (filter pos? <>)
-      (count <>)))
+    (m/eq <> a)
+    (m/eseq <>)
+    (filter pos? <>)
+    (count <>)))
 
 (defn min-zeros
   "Find the slice with the minimum number of zeros"
@@ -45,11 +47,27 @@
     (* (count-eq m 1)
        (count-eq m 2))))
 
+(defn merge-pixels
+  "Merge the "
+  [p1 p2]
+  (if (= p1 2) p2 p1))
+
+(defn merge-layers
+  [t1 t2]
+  (m/emap merge-pixels t1 t2))
+
 (defn part1
   [f dims]
   (as-> f <>
     (read-image <>)
     (split-layers <> dims)
     (min-zeros <>)))
+
+(defn part2
+  [f dims]
+  (as-> f <>
+    (read-image <>)
+    (split-layers <> dims)
+    (reduce merge-layers <>)))
 
 ;; The End
